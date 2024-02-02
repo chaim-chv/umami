@@ -4,13 +4,6 @@
     "es2020": true,
     "node": true
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:prettier/recommended",
-    "plugin:import/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "next"
-  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -19,21 +12,29 @@
     "ecmaVersion": 11,
     "sourceType": "module"
   },
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:import/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "next"
+  ],
+
   "plugins": ["@typescript-eslint", "prettier"],
   "settings": {
     "import/resolver": {
       "alias": {
         "map": [
-          ["assets", "./src/assets"],
-          ["components", "./src/components"],
+          ["assets", "./assets"],
+          ["components", "./components"],
           ["db", "./db"],
-          ["hooks", "./src/components/hooks"],
-          ["lang", "./src/lang"],
-          ["lib", "./src/lib"],
+          ["hooks", "./hooks"],
+          ["lang", "./lang"],
+          ["lib", "./lib"],
           ["public", "./public"],
-          ["queries", "./src/queries"],
-          ["store", "./src/store"],
-          ["styles", "./src/styles"]
+          ["queries", "./queries"],
+          ["store", "./store"],
+          ["styles", "./styles"]
         ],
         "extensions": [".ts", ".tsx", ".js", ".jsx", ".json"]
       }
@@ -49,9 +50,7 @@
     "@next/next/no-img-element": "off",
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/no-var-requires": "off",
-    "@typescript-eslint/no-empty-interface": "off",
-    "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }]
+    "@typescript-eslint/no-var-requires": "off"
   },
   "globals": {
     "React": "writable"

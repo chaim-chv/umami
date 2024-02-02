@@ -12,8 +12,8 @@ RUN yarn install --frozen-lockfile
 FROM node:18-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
+COPY docker/middleware.js .
 COPY . .
-COPY docker/middleware.js ./src
 
 ARG DATABASE_TYPE
 ARG BASE_PATH
@@ -35,9 +35,7 @@ ENV NEXT_TELEMETRY_DISABLED 1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-RUN set -x \
-    && apk add --no-cache curl \
-    && yarn add npm-run-all dotenv prisma semver
+RUN yarn add npm-run-all dotenv prisma
 
 # You only need to copy next.config.js if you are NOT using the default configuration
 COPY --from=builder /app/next.config.js .
@@ -55,7 +53,6 @@ USER nextjs
 
 EXPOSE 3000
 
-ENV HOSTNAME 0.0.0.0
 ENV PORT 3000
 
 CMD ["yarn", "start-docker"]
